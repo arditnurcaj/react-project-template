@@ -1,26 +1,16 @@
-import create from 'zustand';
-
-interface IState {
-  count: number;
-  increase: () => void;
-  reset: () => void;
-}
-
-const useStore = create<IState>((set) => ({
-  count: 0,
-  increase: () => set((state) => ({ count: state.count + 1 })),
-  reset: () => set({ count: 0 }),
-}));
+import { useAppStore } from '@/stores';
 
 function App(): JSX.Element {
-  const count = useStore((state) => state.count);
-  const increaseCount = useStore((state) => state.increase);
-  const resetCount = useStore((state) => state.reset);
+  const { count, increase, reset } = useAppStore();
 
   return (
     <div>
-      <button onClick={() => increaseCount()}>Add</button>
-      <button onClick={() => resetCount()}>Reset</button>
+      <button data-testid='add-btn' onClick={() => increase()}>
+        Add
+      </button>
+      <button data-testid='reset-btn' onClick={() => reset()}>
+        Reset
+      </button>
       <div data-testid='count'>Count: {count}</div>
     </div>
   );
