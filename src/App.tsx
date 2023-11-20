@@ -1,18 +1,27 @@
 import { useAppStore } from '@/stores';
-import { Button } from '@/components';
 
 function App(): JSX.Element {
   const { count, increase, reset } = useAppStore();
 
   return (
-    <div>
-      <Button data-testid='add-btn' onClick={() => increase()}>
+    <div className='p-6'>
+      <button
+        className='btn btn-primary mr-4'
+        data-testid='add-btn'
+        onClick={() => increase()}
+      >
         Add
-      </Button>
-      <Button data-testid='reset-btn' onClick={() => reset()}>
+      </button>
+      <button
+        className='btn btn-outline'
+        data-testid='reset-btn'
+        onClick={() => reset()}
+      >
         Reset
-      </Button>
-      <div data-testid='count'>Count: {count}</div>
+      </button>
+      <div className='mt-4' data-testid='count'>
+        Count: {count}
+      </div>
     </div>
   );
 }
